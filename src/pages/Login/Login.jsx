@@ -1,9 +1,24 @@
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
+import { signIn, signUp } from "../../firebase";
 
 const Login = () => {
   const [signState, setSignState] = useState("Sign In");
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const userAuth = async (e) => {
+    e.preventDefault();
+
+    if (signState === "Sign In") {
+      await signIn(email, password);
+    } else {
+      await signUp(name, email, password);
+    }
+  };
 
   return (
     <div className="login">
@@ -11,15 +26,33 @@ const Login = () => {
       <div className="login-form">
         <h1>{signState}</h1>
 
-        <form>
+        <form onSubmit={userAuth}>
           {signState === "Sign Up" ? (
-            <input type="text" name="name" placeholder="Your Name" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              name="name"
+              placeholder="Your Name"
+            />
           ) : (
             <></>
           )}
 
-          <input type="email" name="email" placeholder="Your Email" />
-          <input type="password" name="password" placeholder="Your Password" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Your Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button>{signState}</button>
           <div className="form-help">
             <div className="remember">
