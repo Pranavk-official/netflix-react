@@ -35,6 +35,7 @@
   padding: 16px 20px;
   font-size: 16px;
   font-weight: 500;
+  color: white;
 }
 
 .login-form input::placeholder {
@@ -85,4 +86,29 @@
   color: #fff;
   font-weight: 500;
   cursor: pointer;
+}
+
+.login-spinner {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.login-spinner img {
+  width: 60px;
+}
+
+
+@media (max-width: 500px) {
+  .login {
+    padding: 15px 5%;
+  }
+
+  .login-form {
+    padding: 20px;
+    margin-top: 30px;
+  }
 }
